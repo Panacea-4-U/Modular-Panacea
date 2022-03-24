@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css");
+
+body {
+	font-family: "Montserrat", sans-serif;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+* {
+	font-family: "Montserrat", sans-serif !important;
+}
+
+.reveal {
+  position: relative;
+  font-size: 9em;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: #eee;
+  color: red;
+  letter-spacing: 0.5em; 
+}
+
+ span {
+  color: #eee;
+  mix-blend-mode: lighten;
+}
+
+.reveal:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  border-radius: 50%;
+  background: #11CB95;
+  animation: reveal 6s linear infinite;
+}
+
+@keyframes reveal {
+  0% {
+    left: -50px;
+  }
+  50% {
+    left: calc(100% - 150px);
+  }
+  100% {
+    left: -50px;
+  }
+}

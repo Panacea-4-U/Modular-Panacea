@@ -1,0 +1,18 @@
+.navbarPosition {
+  margin: 8px 8px 0px 8px;
+  border-radius: 8px;
+}
+
+.btn-success {
+  background-color: #0cd17f;
+  border-color: #0cd17f;
+}
+
+.btn-success:hover {
+  background-color: #08b16a;
+  border-color: #08b16a;
+}
+
+.nav-item {
+  padding-right: 1.5rem;
+}

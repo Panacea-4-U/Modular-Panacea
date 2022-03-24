@@ -1,0 +1,56 @@
+{% extends "doctor/base.html" %}
+{% load static %}
+
+{% block connectcss %} 
+<link rel="stylesheet" href="{% static 'doctor/contact_us.css' %}">
+{% endblock connectcss %}
+
+{% block content %} 
+<body>
+    <div class="container">
+        <form method="post">
+          {% csrf_token %}
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="firstname" placeholder="Your name..">
+      
+          <label for="lname">Email</label>
+          <input type="email" id="lname" name="email" placeholder="Email..">
+          <br>
+          <label for="country">Country</label>
+          <select id="country" name="country">
+            <option disabled selected value> -- select an option -- </option>
+            <option value="australia">Australia</option>
+            <option value="canada">Canada</option>
+            <option value="usa">USA</option>
+            <option value="uae">UAE</option>
+            <option value="uk">UK</option>
+            <option value="california">California</option>
+            <option value="brazil">Brazil</option>
+            <option value="india">India</option>
+            <option value="pakistan">Pakistan</option>
+            <option value="russia">Russia</option>
+            <option value="afghanistan">Afghanistan</option>
+            <option value="bangladesh">Bangladesh</option>
+            <option value="nepal">Nepal</option>
+            <option value="bhutan">Bhutan</option>
+            <option value="germany">Germany</option>
+            <option value="france">France</option>
+            <option value="italy">Italy</option>
+
+          </select>
+      
+          <label for="subject">Subject</label>
+          <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+      
+          <input type="submit" value="Submit">
+      
+        </form>
+      </div>
+</body>
+
+
+{% endblock content %}
+
+{% block script %} 
+
+{% endblock script %}

@@ -1,0 +1,82 @@
+{% extends "doctor/base.html" %}
+{% load static %}
+
+{% block connectcss %} 
+<link rel="stylesheet" href="{% static 'doctor/homepage.css' %}">
+{% endblock connectcss %}
+
+{% block login %}
+<li class="menu__group"><a href="{% url 'web-home' %}" class="menu__link r-link text-underlined">LOGOUT</a></li>
+{% endblock login %}
+
+
+{% block content %} 
+
+<body>
+
+  <div id="scene" >
+    <div id="left-zone">
+      <ul class="list">
+        <li class="item">
+          <input type="radio"
+          id="radio_The garden strawberry (or simply strawberry /ˈstrɔːbᵊri/; Fragaria × ananassa) is a widely grown hybrid species of the genus Fragaria (collectively known as the strawberries)" name="basic_carousel" value="The garden strawberry (or simply strawberry /ˈstrɔːbᵊri/; Fragaria × ananassa) is a widely grown hybrid species of the genus Fragaria (collectively known as the strawberries)"checked="checked"/>
+          <label class="label_ayurveda" for="radio_The garden strawberry (or simply strawberry /ˈstrɔːbᵊri/; Fragaria × ananassa) is a widely grown hybrid species of the genus Fragaria (collectively known as the strawberries)" >ayurveda</label>
+          <div class="content content_ayurveda"><span class="picto"></span>
+            <h1>ayurveda</h1>
+            <p>Ayurvedic medicine (“Ayurveda” for short) is one of the world's oldest holistic (“whole-body”) healing systems. It was developed more than 3,000 years ago in India. Its main goal is to promote good health and restore harmony and balace in the body.</p>
+          </div>
+        </li>
+        <li class="item">
+          <input type="radio"
+           id="radio_A banana is an edible fruit, botanically a berry, produced by several kinds of large herbaceous flowering plants in the genus Musa." name="basic_carousel" value="A banana is an edible fruit, botanically a berry, produced by several kinds of large herbaceous flowering plants in the genus Musa."/>
+          <label class="label_homeopathy" for="radio_A banana is an edible fruit, botanically a berry, produced by several kinds of large herbaceous flowering plants in the genus Musa.">homeopathy</label>
+          <div class="content content_homeopathy"><span class="picto"></span>
+            <h1>homeopathy</h1>
+            <p>Homeopathy or homoeopathy is a pseudoscientific system of alternative medicine. Its practitioners, called homeopaths, believe that a substance that causes symptoms of a disease in healthy people can cure similar symptoms in sick people; this doctrine is called similia similibus curentur, or "like cures like".</p>
+          </div>
+        </li>
+        <li class="item">
+          <input type="radio" id="radio_The apple tree (Malus domestica) is a deciduous tree in the rose family best known for its sweet, pomaceous fruit, the apple. It is cultivated worldwide as a fruit tree, and is the most widely grown species in the genus Malus." name="basic_carousel" value="The apple tree (Malus domestica) is a deciduous tree in the rose family best known for its sweet, pomaceous fruit, the apple. It is cultivated worldwide as a fruit tree, and is the most widely grown species in the genus Malus."/>
+          <label class="label_cardiac" for="radio_The apple tree (Malus domestica) is a deciduous tree in the rose family best known for its sweet, pomaceous fruit, the apple. It is cultivated worldwide as a fruit tree, and is the most widely grown species in the genus Malus.">cardiac health</label>
+          <div class="content content_cardiac"><span class="picto"></span>
+            <h1>cardiac health</h1>
+            <p>Being physically active is a major step toward good heart health. It's one of your most effective tools for strengthening the heart muscle, keeping your weight under control and warding off the artery damage from high cholesterol, high blood sugar and high blood pressure that can lead to heart attack or stroke.</p>
+          </div>
+        </li>
+        <li class="item">
+          <input type="radio" id="radio_The orange (specifically, the sweet orange) is the fruit of the citrus species Citrus × sinensis in the family Rutaceae." name="basic_carousel" value="The orange (specifically, the sweet orange) is the fruit of the citrus species Citrus × sinensis in the family Rutaceae."/>
+          <label class="label_other" for="radio_The orange (specifically, the sweet orange) is the fruit of the citrus species Citrus × sinensis in the family Rutaceae.">signs and syptoms</label>
+          <div class="content content_other"><span class="picto"></span>
+            <h1>signs and syptoms</h1>
+            <p>Signs and symptoms are the observed or detectable signs, and experienced symptoms of an illness, injury, or condition. A sign for example may be a higher or lower temperature than normal, raised or lowered blood pressure or an abnormality showing on a medical scan. A symptom is something out of the ordinary that is experienced by an individual such as feeling feverish, a headache or other pain or pains in the body.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div id="middle-border"></div>
+    <div id="right-zone"></div>
+  </div>
+  <div id="panaceabox">
+    <marquee><h1 style=" margin-top: 3vh;">Panacea</h1></marquee>
+    <p style="margin-top: 1.5vh; text-align: center;"> 
+      Search the best experienced doctors nearby with reviwes and ratings. You are just a step away from cure.
+    </p>
+    
+    <h4> Have a doubt about your heart problems? </h4>
+    <p> This is the site for you <br>
+        Enter your symptoms and check your heart<br>condition !!
+    </p>
+    <h4 class="glow" >REMEMBER<br>
+        Prevention is better than cure
+    </h4>
+    
+  </div>
+</body>
+
+ 
+    
+{% endblock content %}
+
+{% block script %} 
+
+{% endblock script %}
