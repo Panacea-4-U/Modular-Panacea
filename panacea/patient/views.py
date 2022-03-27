@@ -33,3 +33,9 @@ def health(request, pk):
         print(request.POST.get('respi'))
     context={'pk': pk}
     return render(request, 'patient/patientdetails.html', {'context': context})
+
+def contact_us(request,pk):
+    context={'pk': pk}
+    patient=Patient.objects.get(pat_id=pk)
+    context['email']=patient.email
+    return render(request, "patient/contact_us.html", {'context': context})

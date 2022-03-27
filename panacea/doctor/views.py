@@ -36,3 +36,26 @@ class SearchView(ListView):
         else:
             result = Doctor.objects.all()
         return {'result': result, 'pk': self.kwargs['pk']}
+    
+def contact_us(request,pk):
+    context={'pk': pk}
+    doctor=Doctor.objects.get(doc_id=pk)
+    context['email']=doctor.email
+    return render(request, "doctor/contact_us.html", {'context': context})
+
+def health(request, pk):
+    if request.method == "POST":
+        print(request.POST.get('gender'))
+        print(request.POST.get('smoker'))
+        print(request.POST.get('tobacco'))
+        print(request.POST.get('bp'))
+        print(request.POST.get('obese'))
+        print(request.POST.get('diabetes'))
+        print(request.POST.get('metabolic'))
+        print(request.POST.get('stimulant'))
+        print(request.POST.get('cardiac'))
+        print(request.POST.get('preclam'))
+        print(request.POST.get('cabg'))
+        print(request.POST.get('respi'))
+    context={'pk': pk}
+    return render(request, 'doctor/patientdetails.html', {'context': context})

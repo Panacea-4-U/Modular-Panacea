@@ -15,7 +15,8 @@ urlpatterns = [
     path('doctor-details', views.doctordetails,name='doctordetails'),
     path('patient-details', views.patientdetails,name='patientdetails'),
     path('db_check/',views.check, name='check'),
-    path('services/',views.SearchView.as_view(), name='services')
+    path('services/',views.SearchView.as_view(), name='services'),
+    path('map_show', views.map_show, name="map_show")
 ]
 
 

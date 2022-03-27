@@ -31,7 +31,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
   <title>Panacea</title>
   <!-- add icon link -->
-  <link rel="icon" href="{% static 'doctor/panacea logo.jpeg' %}" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   {% block style %}
@@ -69,7 +68,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a href="#0" class="nav-link">FAQs</a>
-              <a href="{% url 'contact us'%}" class="nav-link">Contact Us</a>
+              <a href="{% url 'pcontact_us' pk=context.pk %}" class="nav-link">Contact Us</a>
           </li>
           <li class="nav-item">
             <a href="{% url 'web-home' %}"><button class="btn btn-success">Logout</button></a>

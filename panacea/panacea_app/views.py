@@ -118,3 +118,7 @@ class SearchView(ListView):
 		else:
 			result = Doctor.objects.all()
 		return result
+
+def map_show(request):
+    context={'pk': 123456, 'coords': [[28.549948, 77.268241],[28.549948, 77.268241],[28.552232, 77.268941],[28.551748, 77.269022],[28.551738, 77.270164],[28.548602, 77.271546],[28.554603, 77.268305], [29.554603, 78.268305]]}
+    return render(request, 'panacea_app/map_show.html', {'context': context})
