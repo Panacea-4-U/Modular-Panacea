@@ -23,6 +23,7 @@ class Doctor(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length=100)
     licence_no = models.CharField(max_length=50)
+    speciality = models.CharField(max_length=20, default="None")
     class Meta:
         db_table = "doctor"
     def get_absolute_url(self):

@@ -15,6 +15,51 @@
         margin-top: 6px;
         margin-bottom: 10px;
     }
+    
+    .button_grp ul{
+        display: flex;
+        list-style: none;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        padding-left: 0px;
+    }
+    
+    .button_grp ul li{
+        background: #fff;
+        margin: 10px;
+        padding: 10px 15px;
+        min-width: 80px;
+        text-align: center;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 1px 1px 3px rgba(0,0,0,0.125);
+    }
+    
+    .button_grp ul li.active,
+    .button_grp ul li:hover{
+        background: #0000fe;
+        color: #fff;
+    }
+    
+    .item_grp{
+        margin-top: 50px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .item_grp .item{
+        height: auto;
+        background: #fff;
+        margin: 10px;
+        border-radius: 5px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 1px 1px 3px rgba(0,0,0,0.125);
+    }
 </style>
 {% endblock style %}
 
@@ -32,6 +77,40 @@
             </div>
         </form>
         <a class="btn" href={% url 'map_show' %}>Click to see locations on map</a>
+        <div class="container-fluid">
+            <div class="button_grp">
+                <ul>
+                    <li data-li="all" class="btn-filter active">All</li>
+                    <li data-li="Lungs" class="btn-filter">Lungs</li>
+                    <li data-li="Hair" class="btn-filter">Hair</li>
+                    <li data-li="Heart" class="btn-filter">Heart</li>
+                    <li data-li="Kidney" class="btn-filter">Kidney</li>
+                    <li data-li="ENT" class="btn-filter">ENT</li>
+                    <li data-li="Eyes" class="btn-filter">Eyes</li>
+                    <li data-li="Bones" class="btn-filter">Bones</li>
+                    <li data-li="Dentist" class="btn-filter">Dentist</li>
+                    <li data-li="Homeopathic" class="btn-filter">Homeopathic</li>
+                    <li data-li="Ayurvedic" class="btn-filter">Ayurvedic</li>
+                    <li data-li="pediatrician" class="btn-filter">Pediatrician</li>
+                    <li data-li="None" class="btn-filter">None</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row item_grp">
+            {% for result in all_search_results %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card {{ result.speciality }} item" style="margin-bottom: 12px; border-radius: 10px;">
+                        <h5 class="card-header">Name: {{ result.name }}</h5>
+                        <div class="card-body">
+                        <h5 class="card-title">ID: {{ result.doc_id }}</h5>
+                        <p class="card-text doc_email">Email: {{ result.email }}</p>
+                        <p class="card-text doc_email">Speciality: {{ result.speciality }}</p>
+                        <a href="#" class="btn btn-primary">More Info</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     
         {% comment %} <table style="border-color: #bfc3c7;" class="table table-bordered">
             <thead style="text-align: center;" class="thead-dark">
@@ -68,7 +147,7 @@
                 {% endif %}
             </span>
         </div> {% endcomment %}
-        <div class="row">
+        {% comment %} <div class="row">
             {% for result in all_search_results %}
                 <div class="col-md-6 col-lg-4">
                     <div class="card" style="margin-bottom: 12px; border-radius: 10px;">
@@ -81,7 +160,7 @@
                     </div>
                 </div>
             {% endfor %}
-        </div>
+        </div> {% endcomment %}
     </div>
 {% endblock content %}
 
@@ -102,5 +181,53 @@
             }
         }
     }
+    $(".btn-filter").click(function(){
+		var attr = $(this).attr("data-li");
+
+		$(".btn-filter").removeClass("active");
+		$(this).addClass("active");
+
+		$(".item").parent().hide();
+
+		if(attr == "Lungs"){
+			$("." + attr).parent().show();
+		}
+		else if(attr == "Hair"){
+			$("." + attr).parent().show();
+		}
+		else if(attr == "Heart"){
+			$("." + attr).parent().show();
+		}
+		else if(attr == "Kidney"){
+			$("." + attr).parent().show();
+		}
+		else if(attr == "ENT"){
+			$("." + attr).parent().show();
+		}
+		else if(attr == "Eyes"){
+			$("." + attr).parent().show();
+		}
+		else if(attr == "Bones"){
+			$("." + attr).parent().show();
+		}
+		else if(attr == "Dentist"){
+			$("." + attr).parent().show();
+		}
+		else if(attr == "Homeopathic"){
+			$("." + attr).parent().show();
+		}
+		else if(attr == "Ayurvedic"){
+			$("." + attr).parent().show();
+		}
+		else if(attr == "pediatrician"){
+			$("." + attr).parent().show();
+		}
+		else if(attr == "None"){
+			$("." + attr).parent().show();
+		}
+		else{
+			$(".item").parent().show();
+		}
+	});
 </script>
 {% endblock script %}

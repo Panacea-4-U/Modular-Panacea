@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import creds
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -86,9 +87,9 @@ WSGI_APPLICATION = 'panacea.wsgi.application'
 DATABASES = {  
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'panacea',  
-        'USER': 'root',  
-        'PASSWORD': 'Nayan@123',  
+        'NAME': creds.DB_NAME,  
+        'USER': creds.ROOT_USER_NAME,  
+        'PASSWORD': creds.ROOT_USER_PASSWORD,   
         'HOST': '127.0.0.1',  
         'PORT': '3306',  
         'OPTIONS': {  
