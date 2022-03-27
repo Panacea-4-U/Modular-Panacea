@@ -55,7 +55,7 @@ p,a,h1,h2,h3,h4 {
 .section-team .single-person .person-image img {
 	width: 100%;
     border-radius: 50%;
-    height: 250px;
+    height: 175px;
 }
 
 .section-team .single-person .person-image .icon {

@@ -30,6 +30,7 @@ DEPENDENCES
   
   .menu{
     --rLinkColor: var(--menuLinkColor, currentColor);
+    
   }
   
   .menu__link{
@@ -62,6 +63,7 @@ DEPENDENCES
   .menu{
     background-color: var(--menuBackgroundColor, #EEEEEE);
     box-shadow: var(--menuBoxShadow, 0 1px 3px 0 rgba(57, 62, 70, .12), 0 1px 2px 0 rgba(57, 62, 70, .24));
+    
   }
   
   .menu__list{
@@ -180,6 +182,7 @@ DEPENDENCES
     flex-wrap: inherit;
     align-items: center;
     justify-content: space-between;
+    
 }
 .navbar ul{
     display:inline-flex;
