@@ -38,6 +38,13 @@
     opacity: 0;
   }
 }
+
+#hometxt {
+  margin-top: 35vh;
+  margin-left: 110vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
   background: #eee;
   font-family: "Tahoma";
@@ -45,6 +52,10 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  background-image: url("patient/static/patient/bg_doctor.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 body #scene {
   display: flex;
@@ -61,7 +72,7 @@ body #scene {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   overflow: hidden;
   margin-top: 195px;
-  margin-left: 6vh ;
+  margin-left: 60vh ;
   border-radius: 1.5mm;
   box-shadow: 8px 8px 10px grey;
 }
@@ -80,7 +91,7 @@ body #scene {
   color: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   overflow: hidden;
-  margin-top: 195px;
+  margin-top: 100px;
   margin-left: 970px;
   box-shadow: 8px 8px 10px grey;
 }
@@ -127,7 +138,7 @@ body #scene #left-zone .list li.item input[type=radio] ~ label.label_ayurveda:be
   width: 50px;
   height: 50px;
   margin-left: 15px;
-  background-image: url("https://d30y9cdsu7xlg0.cloudfront.net/png/83067-200.png");
+  background-image: url("ayurveda.png");
   background-position: center;
   background-size: 75% 75%;
   background-repeat: no-repeat;
@@ -139,7 +150,7 @@ body #scene #left-zone .list li.item input[type=radio] ~ label.label_homeopathy:
   width: 50px;
   height: 50px;
   margin-left: 15px;
-  background-image: url("https://d30y9cdsu7xlg0.cloudfront.net/png/53209-200.png");
+  background-image: url("homeopathy.jpg");
   background-position: center;
   background-size: 75% 75%;
   background-repeat: no-repeat;
@@ -151,7 +162,7 @@ body #scene #left-zone .list li.item input[type=radio] ~ label.label_cardiac:bef
   width: 50px;
   height: 50px;
   margin-left: 15px;
-  background-image: url("https://d30y9cdsu7xlg0.cloudfront.net/png/14333-200.png");
+  background-image: url("cardiac.jpg");
   background-position: center;
   background-size: 75% 75%;
   background-repeat: no-repeat;
@@ -163,7 +174,7 @@ body #scene #left-zone .list li.item input[type=radio] ~ label.label_other:befor
   width: 50px;
   height: 50px;
   margin-left: 15px;
-  background-image: url("https://d30y9cdsu7xlg0.cloudfront.net/png/9636-200.png");
+  background-image: url("symptoms.jpg");
   background-position: center;
   background-size: 75% 75%;
   background-repeat: no-repeat;
@@ -188,7 +199,7 @@ body #scene #left-zone .list li.item input[type=radio] ~ .content {
 body #scene #left-zone .list li.item input[type=radio] ~ .content.content_ayurveda .picto {
   height: 100px;
   width: 100px;
-  background-image: url("https://d30y9cdsu7xlg0.cloudfront.net/png/83067-200.png");
+  background-image: url("ayurveda.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -201,7 +212,7 @@ body #scene #left-zone .list li.item input[type=radio] ~ .content.content_ayurve
 body #scene #left-zone .list li.item input[type=radio] ~ .content.content_homeopathy .picto {
   height: 100px;
   width: 100px;
-  background-image: url("https://d30y9cdsu7xlg0.cloudfront.net/png/53209-200.png");
+  background-image: url("homeopathy.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -214,7 +225,7 @@ body #scene #left-zone .list li.item input[type=radio] ~ .content.content_homeop
 body #scene #left-zone .list li.item input[type=radio] ~ .content.content_cardiac .picto {
   height: 100px;
   width: 100px;
-  background-image: url("https://d30y9cdsu7xlg0.cloudfront.net/png/14333-200.png");
+  background-image: url("cardiac.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -227,7 +238,7 @@ body #scene #left-zone .list li.item input[type=radio] ~ .content.content_cardia
 body #scene #left-zone .list li.item input[type=radio] ~ .content.content_other .picto {
   height: 100px;
   width: 100px;
-  background-image: url("https://d30y9cdsu7xlg0.cloudfront.net/png/9636-200.png");
+  background-image: url("symptoms.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -304,3 +315,8 @@ body #scene #right-zone {
     text-shadow: 0 0 20px #00B16A, 0 0 30px #00B16A, 0 0 40px #00B16A, 0 0 50px #00B16A, 0 0 60px #00B16A, 0 0 70px #00B16A, 0 0 80px #00B16A;
   }
 }
+
+footer{
+  margin-top: 200px;
+}
+

@@ -62,6 +62,12 @@
           <li class="nav-item">
             <a href="{% url 'phealth' pk=context.pk %}" class="nav-link">Health Check</a>
           </li>
+          <li class="nav-item">
+            <a href="{% url 'pprofile' pk=context.pk %}" class="nav-link">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'feed' pk=context.pk %}" class="nav-link">Feed</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
               More
