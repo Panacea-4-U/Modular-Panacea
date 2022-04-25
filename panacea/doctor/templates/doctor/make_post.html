@@ -7,23 +7,22 @@
 <link rel="stylesheet" href="{% static 'doctor/make_post.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
 <link href="https://fonts.googleapis.com/css?family=Poppins:500,700&display=swap" rel="stylesheet">
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 {% endblock connectcss %}
 
 {% block content %} 
 
 {% block style %}
 <style>
-    
+    .ql-container {
+        height: 84%;
+    }
 </style>
 {% endblock style %}
 
 <div>
     <form method="POST" enctype='multipart/form-data' >
         {% csrf_token %}
-        {% comment %} <input class="border-radius" name="title" type="text" placeholder="Title" style="margin:15px 7px 7px 7px" required />
-        <input class="border-radius" name="description" type="text" placeholder="Description" style="margin-bottom: 7px" />
-        <input type="file" id="image" name="image" accept="image/png, image/gif, image/jpeg, image/jpg" />
-        <button class="btn btn-secondary"> Post </button> {% endcomment %}
         <div class="container">
 
             <h1 class="title">Post</h1>
@@ -41,7 +40,9 @@
             </div>
             <div class="textarea-group">
                 <label for="bio">Description</label>
-                <textarea name="description" id="bio"></textarea>
+                {% comment %} <div id="editor"> {% endcomment %}
+                    <textarea name="description" id="bio"></textarea>
+                {% comment %} </div> {% endcomment %}
             </div>
         
             <div class="button-container">
@@ -52,8 +53,16 @@
 </div>
 
 
+
+
 {% endblock content %}
 
 {% block script %} 
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script>
+    var quill = new Quill('#editor', {
+      theme: 'snow'
+    });
+  </script>
 
 {% endblock script %}
