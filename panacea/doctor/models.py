@@ -23,5 +23,6 @@ class PostDb(models.Model):
     description = models.CharField(max_length=100)
     image = models.ImageField(null=True, blank=True, upload_to="images/")
     post_date = models.DateField(auto_now_add=True)
+    doc_name = models.CharField(max_length=100)
     class Meta:
         db_table = "postdb"

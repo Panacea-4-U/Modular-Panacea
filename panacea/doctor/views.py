@@ -81,6 +81,7 @@ def make_post(request, pk):
     if request.method == "POST":
         post = PostDb()
         post.doc_id=pk
+        post.doc_name=Doctor.objects.get(doc_id=pk).name
         post.title = request.POST.get('title')
         post.description = request.POST.get('description')
         post.image = request.FILES['image']
@@ -90,5 +91,5 @@ def make_post(request, pk):
 def feed(request, pk):
     posts=PostDb.objects.all()
     context={'pk': pk, 'posts': posts}
-    print(posts[0].title)
+    # print(posts[0].title)
     return render(request, 'doctor/feed.html', {'context': context})

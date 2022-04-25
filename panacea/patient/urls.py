@@ -11,7 +11,7 @@ urlpatterns = [
     path('contact_us/', views.contact_us, name="pcontact_us"),
     path('map_show', views.map_show, name="map_show"),
     path('profile/', views.profile, name="pprofile"),
-    path('feed/', views.feed, name="pfeed")
+    path('feed/', views.pfeed, name="pfeed")
 ]
 
 if settings.DEBUG:

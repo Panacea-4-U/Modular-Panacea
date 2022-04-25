@@ -54,8 +54,7 @@ def profile(request,pk):
         patient.save()
     return render(request,'patient/profile.html',{'context': context})
 
-def feed(request, pk):
+def pfeed(request, pk):
     posts=PostDb.objects.all()
     context={'pk': pk, 'posts': posts}
-    print(posts[0].title)
     return render(request, 'patient/feed.html', {'context': context})
