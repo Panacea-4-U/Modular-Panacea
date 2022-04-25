@@ -11,13 +11,43 @@
 
 {% block content %} 
 
+{% block style %}
+<style>
+    
+</style>
+{% endblock style %}
+
 <div>
     <form method="POST" enctype='multipart/form-data' >
         {% csrf_token %}
-        <input class="border-radius" name="title" type="text" placeholder="Title" style="margin:15px 7px 7px 7px" required />
+        {% comment %} <input class="border-radius" name="title" type="text" placeholder="Title" style="margin:15px 7px 7px 7px" required />
         <input class="border-radius" name="description" type="text" placeholder="Description" style="margin-bottom: 7px" />
         <input type="file" id="image" name="image" accept="image/png, image/gif, image/jpeg, image/jpg" />
-        <button class="btn btn-secondary"> Post </button>
+        <button class="btn btn-secondary"> Post </button> {% endcomment %}
+        <div class="container">
+
+            <h1 class="title">Post</h1>
+        
+            <div class="grid">
+                <div class="form-group a">
+                    <label for="name">Title</label>
+                    <input name="title" id="name" type="text">
+                </div>
+
+                <div class="form-group b">
+                    <label for="name">Upload Photo/File</label>
+                    <input type="file" id="image" name="image" accept="image/png, image/gif, image/jpeg, image/jpg" />
+                </div>
+            </div>
+            <div class="textarea-group">
+                <label for="bio">Description</label>
+                <textarea name="description" id="bio"></textarea>
+            </div>
+        
+            <div class="button-container">
+                <button class="button">POST</button>
+            </div>
+        </div>
     </form>
 </div>
 
