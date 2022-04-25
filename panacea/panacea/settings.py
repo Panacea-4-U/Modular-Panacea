@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # 'django_quill',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'panacea_app.apps.PanaceaAppConfig',
     'doctor.apps.DoctorConfig',
-    'patient.apps.PatientConfig'
+    'patient.apps.PatientConfig',
+    'django_social_share'
 ]
 
 MIDDLEWARE = [
