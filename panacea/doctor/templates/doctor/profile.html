@@ -50,8 +50,10 @@
                           <p class="text-muted">{{ context.doctor.licence_no|default:"" }}</p>
                         </div>
                         <div class="col-6 mb-3">
-                          <h6>Total Posts</h6>
-                          <p class="text-muted">{{ context.count|default:"" }}</p>
+                          <h6>Total Posts ({{ context.count|default:"" }})</h6>
+                          {% for i in context.totalPosts|slice:":3" %}
+                            <p>{{ i.title }} : {{ i.post_date }}<p>
+                          {% endfor %}
                         </div>
                       </div>
                       {% comment %} <h6>Projects</h6>

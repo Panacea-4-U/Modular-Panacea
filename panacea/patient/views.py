@@ -55,6 +55,12 @@ def profile(request,pk):
     return render(request,'patient/profile.html',{'context': context})
 
 def pfeed(request, pk):
-    posts=PostDb.objects.all()
-    context={'pk': pk, 'posts': posts}
+    posts=PostDb.objects.all().order_by('-post_date', 'doc_name')
+    doctorPostCount = dict()
+    doctor = Doctor.objects.all()
+    for i in doctor:
+        docs=PostDb.objects.filter(doc_id=i.doc_id).count()
+        doctorPostCount[i.name] = docs
+    doctorPostCount = dict(sorted(doctorPostCount.items(), key=lambda item: item[1], reverse=True))
+    context={'pk': pk, 'posts': posts, 'doctorPostCount': doctorPostCount}
     return render(request, 'patient/feed.html', {'context': context})

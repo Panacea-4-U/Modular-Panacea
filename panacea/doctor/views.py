@@ -68,10 +68,10 @@ def map_show(request, pk):
     return render(request, 'doctor/map_show.html', {'context': context})
 
 def profile(request,pk):
-    doctor=Doctor.objects.get(doc_id=pk)
+    doctor = Doctor.objects.get(doc_id=pk)
     count = PostDb.objects.filter(doc_id=doctor.doc_id).count() 
-        
-    context={'pk': pk, 'doctor': doctor, 'count': count}
+    totalPosts = PostDb.objects.filter(doc_id=doctor.doc_id)
+    context={'pk': pk, 'doctor': doctor, 'count': count, "totalPosts": totalPosts}
     if request.method == "POST":
         doctor.name=request.POST.get('name')
         doctor.email=request.POST.get('email')
