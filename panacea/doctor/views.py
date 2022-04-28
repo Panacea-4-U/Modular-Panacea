@@ -68,8 +68,10 @@ def map_show(request, pk):
     return render(request, 'doctor/map_show.html', {'context': context})
 
 def profile(request,pk):
-    doctor=Doctor.objects.get(doc_id=pk)
-    context={'pk': pk, 'doctor': doctor}
+    doctor = Doctor.objects.get(doc_id=pk)
+    count = PostDb.objects.filter(doc_id=doctor.doc_id).count() 
+    totalPosts = PostDb.objects.filter(doc_id=doctor.doc_id)
+    context={'pk': pk, 'doctor': doctor, 'count': count, "totalPosts": totalPosts}
     if request.method == "POST":
         doctor.name=request.POST.get('name')
         doctor.email=request.POST.get('email')
@@ -89,7 +91,13 @@ def make_post(request, pk):
     return render(request, 'doctor/make_post.html', {'context': context})
 
 def feed(request, pk):
-    posts=PostDb.objects.all()
-    context={'pk': pk, 'posts': posts}
+    posts=PostDb.objects.all().order_by('-post_date', 'doc_name')
+    doctorPostCount = dict()
+    doctor = Doctor.objects.all()
+    for i in doctor:
+        docs=PostDb.objects.filter(doc_id=i.doc_id).count()
+        doctorPostCount[i.name] = docs
+    doctorPostCount = dict(sorted(doctorPostCount.items(), key=lambda item: item[1], reverse=True))
+    context={'pk': pk, 'posts': posts, 'doctorPostCount': doctorPostCount}
     # print(posts[0].title)
     return render(request, 'doctor/feed.html', {'context': context})
