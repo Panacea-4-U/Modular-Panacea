@@ -5,6 +5,7 @@ from panacea_app.models import Patient, TempDb, Doctor
 from .models import PostDb
 from django.db.models import Q
 from django.views.generic.list import ListView
+import itertools
 
 # Create your views here.
 def home(request,pk):
@@ -98,6 +99,7 @@ def feed(request, pk):
         docs=PostDb.objects.filter(doc_id=i.doc_id).count()
         doctorPostCount[i.name] = docs
     doctorPostCount = dict(sorted(doctorPostCount.items(), key=lambda item: item[1], reverse=True))
+    doctorPostCount = dict(itertools.islice(doctorPostCount.items(), 5))
     context={'pk': pk, 'posts': posts, 'doctorPostCount': doctorPostCount}
     # print(posts[0].title)
     return render(request, 'doctor/feed.html', {'context': context})
