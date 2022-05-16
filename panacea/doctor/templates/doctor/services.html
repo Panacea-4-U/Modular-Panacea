@@ -105,7 +105,7 @@
                         <h5 class="card-title">ID: {{ result.doc_id }}</h5>
                         <p class="card-text doc_email">Email: {{ result.email }}</p>
                         <p class="card-text doc_email">Speciality: {{ result.speciality }}</p>
-                        <a href="#" class="btn btn-primary">More Info</a>
+                        <a href="{% url 'dpdetails2' pk=context.pk pk2=result.doc_id %}" class="btn btn-primary">More Info</a>
                         </div>
                     </div>
                 </div>

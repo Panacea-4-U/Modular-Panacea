@@ -52,6 +52,18 @@
                           <h6>PinCode</h6>
                           <p class="text-muted">Patient pincode</p>
                         </div>
+                        <div class="col-6 mb-3">
+                          <h6>Total Posts : {{ context.reviews.count|default:"" }}</h6>
+                          {% for i in context.reviews %}
+                            <p>{{ i.name }}</p>
+                            <p>{{ i.speciality }}</p>
+                            <p>{{ i.rate_1 }}</p>
+                            <p>{{ i.review }}</p>
+                          {% endfor %}
+                        </div>
+                        <div>
+                          <a href="{% url 'pat_bookmark' pk=context.pk %}" class="btn btn-secondary">View Bookmarks</a>
+                        </div>
                       </div>
                       </div>
                     </div>

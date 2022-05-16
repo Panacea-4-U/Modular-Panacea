@@ -24,6 +24,7 @@ def login_register(request):
         pd_id=randint(1000000000,9999999999)
         name = request.POST.get("name")
         email = request.POST.get("email")
+        ph_no = request.POST.get('ph_no')
         password = request.POST.get("password")
         confpass = request.POST.get("con_password")
         category = request.POST.get("category")
@@ -34,6 +35,7 @@ def login_register(request):
                 patient.pat_id=pd_id
                 patient.name = name
                 patient.email = email
+                patient.ph_no = ph_no
                 patient.password = password
                 patient.save()
                 return redirect(pviews.home, pk=pd_id)
@@ -42,6 +44,7 @@ def login_register(request):
                 doctor.doc_id=pd_id
                 doctor.name = name
                 doctor.email = email
+                doctor.ph_no = ph_no
                 doctor.password = password
                 doctor.licence_no = lic_no
                 doctor.save()

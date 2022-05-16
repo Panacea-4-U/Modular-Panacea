@@ -1,0 +1,28 @@
+{% extends "doctor/base.html" %}
+{% load static %}
+
+
+
+{% block connectcss %} 
+<link rel="stylesheet" href="{% static 'doctor/feed_.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
+<link href="https://fonts.googleapis.com/css?family=Poppins:500,700&display=swap" rel="stylesheet">
+{% endblock connectcss %}
+
+{% block style %}
+<style>
+
+</style>
+{% endblock style %}
+
+{% block content %} 
+
+<div class="container-fluid">
+    <form method="post">
+        {% csrf_token %}
+        Enter header text: <input type="text" name="header">
+        <input type="submit" value="Bookmark"> 
+    </form>
+</div>
+
+{% endblock content %}

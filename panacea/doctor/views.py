@@ -1,14 +1,18 @@
+from ast import Add
 import email
+from email.headerregistry import Address
 from unicodedata import name
-from django.shortcuts import render
-from panacea_app.models import Patient, TempDb, Doctor
-from .models import PostDb
+from django.shortcuts import render, redirect
+from panacea_app.models import Patient, TempDb, Doctor, Reviews, Bookmark
+from .models import PostDb,  AddressDb, SpecialityDb
 from django.db.models import Q
 from django.views.generic.list import ListView
 import itertools
+import random
 
 # Create your views here.
 def home(request,pk):
+    doctor=Doctor.objects.all()   
     context={'pk': pk}
     return render(request,'doctor/homepage.html',{'context': context})
 
@@ -18,8 +22,10 @@ def about(request, pk):
 
 
 def services(request, pk):
-    data=Doctor.objects.all()
+    data=Doctor.objects.filter(~Q(doc_id=pk))
     context={'data': data, 'pk':pk}
+    if request.method == "POST":
+        return redirect('dpdetails2', pk=pk, pk2=request.POST.get('temp_doc_id'))
     return render(request, 'doctor/services.html',{'context': context})
 
 
@@ -72,7 +78,8 @@ def profile(request,pk):
     doctor = Doctor.objects.get(doc_id=pk)
     count = PostDb.objects.filter(doc_id=doctor.doc_id).count() 
     totalPosts = PostDb.objects.filter(doc_id=doctor.doc_id)
-    context={'pk': pk, 'doctor': doctor, 'count': count, "totalPosts": totalPosts}
+    speciality = SpecialityDb.objects.filter(doc_id=pk)
+    context={'pk': pk, 'doctor': doctor, 'count': count, "totalPosts": totalPosts, "speciality": speciality}
     if request.method == "POST":
         doctor.name=request.POST.get('name')
         doctor.email=request.POST.get('email')
@@ -101,5 +108,84 @@ def feed(request, pk):
     doctorPostCount = dict(sorted(doctorPostCount.items(), key=lambda item: item[1], reverse=True))
     doctorPostCount = dict(itertools.islice(doctorPostCount.items(), 5))
     context={'pk': pk, 'posts': posts, 'doctorPostCount': doctorPostCount}
-    # print(posts[0].title)
+    if request.method == "POST":
+        return redirect('bookmark', pk=pk, pk3=request.POST.get('idpost'))
     return render(request, 'doctor/feed.html', {'context': context})
+
+def add_address(request, pk):
+    context={'pk': pk}
+    if request.method == "POST":
+        new_add=AddressDb()
+        new_add.doc_id=pk
+        new_add.address=request.POST.get('addaddr')
+        new_add.pin_code=int(request.POST.get('pincode'))
+        new_add.latitude="25.2352435"
+        new_add.longitude="23.222432"
+        new_add.day=request.POST.get('days')
+        new_add.fromtime=request.POST.get('slotfrom')
+        new_add.totime=request.POST.get('slotto')
+        new_add.save()
+    return render(request, 'doctor/add_address.html',{'context': context})
+
+def add_speciality(request, pk):
+    context={'pk': pk}
+    if request.method == "POST":
+        new_spe=SpecialityDb()
+        new_spe.doc_id=pk
+        new_spe.speciality=request.POST.get('addspe')
+        new_spe.save()
+    return render(request, 'doctor/add_speciality.html',{'context': context})
+
+def remove_address(request, pk):
+    context={'pk':pk}
+    all_res=AddressDb.objects.filter(doc_id=pk)
+    context['address']=all_res
+    if request.method=="POST":
+        AddressDb.objects.filter(address=request.POST.get('address')).delete()
+    return render(request, 'doctor/remove_address.html',{'context':context})
+
+def update_doc(request, pk):
+    context={'pk': pk}
+    doctor=Doctor.objects.get(doc_id=pk)
+    context['doctor']=doctor
+    if request.method == "POST":
+        doctor.name=request.POST.get('name')
+        doctor.email=request.POST.get('email')
+        doctor.save()
+    return render(request, 'doctor/update_doc.html',{'context':context})
+
+def dpdetails2(request, pk, pk2):
+    context={'pk':pk}
+    doctor=Doctor.objects.get(doc_id=pk2)
+    context['doctor']=doctor
+    reviews=Reviews.objects.filter(doc_id=pk2)
+    context['reviews']=reviews
+    speciality=SpecialityDb.objects.filter(doc_id=pk2)
+    context['speciality']=speciality
+    addresses=AddressDb.objects.filter(doc_id=pk2)
+    context['addresses']=addresses
+    if request.method=="POST":
+        review=Reviews()
+        review.doc_id=pk2
+        review.pat_id=pk
+        review.rate_1=request.POST.get('rating')
+        review.review=request.POST.get('comments')
+        review.speciality=request.POST.get('speciality')
+        review.save()
+    return render(request, 'doctor/dpdetails2.html', {'context': context})
+
+def bookmark(request, pk, pk3):
+    context={'pk': pk}
+    if request.method=="POST":
+        bookmark=Bookmark()
+        bookmark.post_id=pk3
+        bookmark.user_id=pk
+        bookmark.header=request.POST.get('header')
+        bookmark.save()
+    return render(request, 'doctor/bookmark.html', {'context': context})
+
+def doc_bookmark(request, pk):
+    context={'pk': pk}
+    bookmarks=Bookmark.objects.filter(user_id=pk)
+    context['bookmarks']=bookmarks
+    return render(request, 'doctor/doc_bookmark.html', {'context': context})

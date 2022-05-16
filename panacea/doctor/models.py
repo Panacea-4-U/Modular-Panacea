@@ -8,6 +8,9 @@ class AddressDb(models.Model):
     pin_code = models.IntegerField()
     latitude = models.CharField(max_length=25)
     longitude = models.CharField(max_length=25)
+    day = models.CharField(max_length=10, default="None")
+    fromtime = models.CharField(max_length=30, default="None")
+    totime = models.CharField(max_length=30, default="None")
     class Meta:
         db_table = "addressdb"
 

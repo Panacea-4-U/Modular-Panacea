@@ -104,8 +104,13 @@
                         <div class="card-body">
                         <h5 class="card-title">ID: {{ result.doc_id }}</h5>
                         <p class="card-text doc_email">Email: {{ result.email }}</p>
-                        <p class="card-text doc_email">Speciality: {{ result.speciality }}</p>
-                        <a href="#" class="btn btn-primary">More Info</a>
+                        <p class="card-text doc_email">Speciality: {{ result.speciality }}</p>.
+                        <a href="{% url 'dpdetails' pk=context.pk pk2=result.doc_id %}" class="btn btn-primary">More Info</a>
+                        {% comment %} <form method="post">
+                            {% csrf_token %}
+                            <input name="temp_doc_id" value={{ result.doc_id }} style="display: none">
+                            <input class="btn btn-primary" type="Submit" Value="More Info">
+                        </form> {% endcomment %}
                         </div>
                     </div>
                 </div>
