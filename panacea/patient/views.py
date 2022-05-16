@@ -114,7 +114,15 @@ def pbookmark(request, pk, pk3):
 
 def pat_bookmark(request, pk):
     context={'pk': pk}
-    bookmarks=Bookmark.objects.filter(user_id=pk)
-    context['bookmarks']=bookmarks
+    bookmarks = Bookmark.objects.filter(user_id=pk)
+    bookmarked_posts_id = []
+    for i in bookmarks:
+        bookmarked_posts_id.append(i.post_id)
+    postinfo = PostDb.objects.filter(id__in=bookmarked_posts_id)
+    total_content = []
+    for i, j in zip(bookmarks, postinfo):
+        total_content.append([i, j])
+    print(total_content)
+    context['bookmarks'] = total_content
     return render(request, 'patient/doc_bookmark.html', {'context': context})
 

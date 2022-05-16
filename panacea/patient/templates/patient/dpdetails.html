@@ -4,7 +4,7 @@
 
 
 {% block connectcss %} 
-<link rel="stylesheet" href="{% static 'patient/profile.css' %}">
+<link rel="stylesheet" href="{% static 'patient/dpdetails_.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
 <link href="https://fonts.googleapis.com/css?family=Poppins:500,700&display=swap" rel="stylesheet">
 {% endblock connectcss %}
@@ -23,15 +23,15 @@
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                       alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
                     <h5 style="color:black;">{{ context.doctor.name|default:"" }}</h5>
-                    {% for i in context.speciality %}
+                    {% comment %} {% for i in context.speciality %}
                         <p style="color:black">{{ i.speciality }}</p>
-                    {% endfor %}
+                    {% endfor %} {% endcomment %}
                     <i class="far fa-edit mb-5"></i>
-                    <h5 style="color:black;">Availability</h5>
+                    {% comment %} <h5 style="color:black;">Address</h5>
                     {% for i in context.addresses %}
-                        <p style="color:black">{{ i.address }}, {{ i.pin_code }}</p>
+                        <p class="address" style="color:black">{{ i.address }}, {{ i.pin_code }}</p>
                         <p style="color:black">{{ i.day }} : {{ i.fromtime }} to {{ i.totime }}</p>
-                    {% endfor %}
+                    {% endfor %} {% endcomment %}
                   </div>
                   <div class="col-md-8">
                     <div class="card-body p-4">
@@ -47,42 +47,68 @@
                           <p class="text-muted">{{ context.doctor.licence_no|default:"" }}</p>
                         </div>
                         <div class="col-6 mb-3">
+                          <h6 style="color:black;">Address</h6>
+                          {% for i in context.addresses %}
+                              <p class="address text-muted" style="color:black">{{ i.address }}, {{ i.pin_code }}</p>
+                              <p class="text-muted" style="color:black">Timings : {{ i.day }} - {{ i.fromtime }} to {{ i.totime }}</p>
+                          {% endfor %}
+                        </div>
+                        <div class="col-6 mb-3">
                           <h6>Total Posts ({{ context.count|default:"" }})</h6>
                           {% for i in context.totalPosts|slice:":3" %}
                             <p>{{ i.title }} : {{ i.post_date }}<p>
                           {% endfor %}
                         </div>
-                        <div>
+                        <div class="col-6 mb-3">
+                          <hr>
                           <form method="post">
                             {% csrf_token %}
-                            <label>Please rate the doctor: </label>
-                            <input type="radio" name="rating" value="1">
-                            <label>1</label>
-                            <input type="radio" name="rating" value="2">
-                            <label>2</label>
-                            <input type="radio" name="rating" value="3">
-                            <label>3</label>
-                            <input type="radio" name="rating" value="4">
-                            <label>4</label>
-                            <input type="radio" name="rating" value="5">
-                            <label>5</label><br>
+                              <label>Please rate the doctor: </label>
+                              <br>
+                              <input type="radio" name="rating" value="1">
+                              <label>1</label>
+                              <input type="radio" name="rating" value="2">
+                              <label>2</label>
+                              <input type="radio" name="rating" value="3">
+                              <label>3</label>
+                              <input type="radio" name="rating" value="4">
+                              <label>4</label>
+                              <input type="radio" name="rating" value="5">
+                              <label>5</label>
+                            <br>
                             <label for="speciality">For speciality : </label>
-                            <select id="speciality" name="speciality">
+                            {% comment %} <select id="speciality" name="speciality">
+                              {% for i in context.speciality %}
+                                <option value="{{ i.speciality }}">{{ i.speciality }}</option>
+                              {% endfor %}
+                            </select> {% endcomment %}
+                            <select style="height: 54px;" class="browser-default custom-select" id="speciality" name="speciality">
+                              <option selected>Select an Option</option>
                               {% for i in context.speciality %}
                                 <option value="{{ i.speciality }}">{{ i.speciality }}</option>
                               {% endfor %}
                             </select>
-                            <br><label>Enter comments: </label>
-                            <input type="text" name="comments">
+                            <br>
+
+                            <div class="grid">
+                              <div class="form-group a">
+                                  <label style="margin-bottom: 0" for="comments">Enter comments: </label>
+                                  <input style="margin: 10px 10px 10px 0px; width: 14vw;" class="border-radius" id="comments" name="comments" type="text" placeholder="Comment" style="margin:15px 7px 7px 7px" />
+                              </div>
+                            </div>
                             <input type="Submit" class="btn btn-primary">
                           </form>
                         </div>
                         <div class="col-6 mb-3">
+                          <hr>
                           <h6>Total comments : {{ context.reviews.count|default:"" }} </h6>
                           {% for i in context.reviews %}
-                            <p>Speciality: {{ i.speciality }}</p>
-                            <p>Stars : {{ i.rate_1 }}</p>
-                            <p>Reviews : {{ i.review }}</p>
+                            <div>
+                              <p style="margin-bottom: 0">Speciality: {{ i.speciality }}</p>
+                              <p style="margin-bottom: 0">Stars : {{ i.rate_1 }}</p>
+                              <p style="margin-bottom: 0">Reviews : {{ i.review }}</p>
+                            </div>
+                            <hr>
                           {% endfor %}
                         </div>
                       </div>
