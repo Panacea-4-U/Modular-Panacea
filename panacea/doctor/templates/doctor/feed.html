@@ -54,7 +54,7 @@
                                                 <form method="post">
                                                     {% csrf_token %}
                                                     <input name="idpost" value={{ i.id }} style="display: none">
-                                                    <input type="submit" value="Bookmark">
+                                                    <button type="submit" class="btn" value="Bookmark"><i class="fa-solid fa-bookmark"></i></button>
                                                 </form>
                                             </div>
                                             <span class="text-black-50 time">{{ i.post_date }}</span>
