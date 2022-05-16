@@ -33,9 +33,12 @@
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                       alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
                     <h5 style="color:black;">{{ context.doctor.name|default:"" }}</h5>
-                    {% for i in context.speciality %}
-                        <p style="color:black">{{ i.speciality }}</p>
-                    {% endfor %}
+                    <div class="mx-auto my-5">
+                      <h6 style="color: black;">Speciality</h6> 
+                      {% for i in context.speciality %}
+                        <p style="margin-bottom: 2px" class="text-muted" style="color:black">{{ i.speciality }}</p>
+                      {% endfor %}
+                    </div>
                     <i class="far fa-edit mb-5"></i>
                   </div>
                   <div class="col-md-8">
@@ -58,13 +61,17 @@
                           {% endfor %}
                         </div>
                       </div>
-                      <div>
-                        <a href="{% url 'add_address' pk=context.pk %}" class="btn btn-primary">Add a new address</a>
-                        <a href="{% url 'add_speciality' pk=context.pk %}" class="btn btn-primary">Add your new skill</a>
-                        <a href="{% url 'remove_address' pk=context.pk %}" class="btn btn-secondary">View addresses</a>
-                        <a href="{% url 'update_doc' pk=context.pk %}" class="btn btn-secondary">Update Profile</a>
-                        <a href="{% url 'doc_bookmark' pk=context.pk %}" class="btn btn-secondary">View Bookmarks</a>
-                      </div>
+                      <div class="row">
+                        <div class="col-6">
+                          <a href="{% url 'add_address' pk=context.pk %}" class="btn btn-success my-2">Add a new address</a>
+                          <a href="{% url 'add_speciality' pk=context.pk %}" class="btn btn-success">Add your new skill</a>
+                        </div>
+                        <div class="col-6">
+                          <a href="{% url 'remove_address' pk=context.pk %}" class="btn btn-success my-2">View addresses</a>
+                          <a href="{% url 'update_doc' pk=context.pk %}" class="btn btn-success">Update Profile</a>
+                          <a href="{% url 'doc_bookmark' pk=context.pk %}" class="btn btn-success my-2">View Bookmarks</a>
+                        </div>
+                        </div>
                       </div>
                     </div>
                   </div>
