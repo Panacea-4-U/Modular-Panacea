@@ -13,7 +13,7 @@ urlpatterns = [
     path('profile/', views.profile, name="pprofile"),
     path('feed/', views.pfeed, name="pfeed"),
     path('doctors_details/<int:pk2>/', views.dpdetails, name="dpdetails"),
-    path('bookmark/<int:pk3>/', views.bookmark, name="bookmark"),
+    path('pbookmark/<int:pk3>/', views.pbookmark, name="pbookmark"),
     path('pat_bookmark', views.pat_bookmark, name="pat_bookmark")
 ]
 

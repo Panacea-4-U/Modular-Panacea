@@ -2,6 +2,12 @@ from django.shortcuts import render, redirect
 from panacea_app.models import Patient, TempDb, Doctor, Reviews, Bookmark
 from doctor.models import PostDb, SpecialityDb, AddressDb
 import random
+import pandas as pd
+import pickle
+
+import os
+module_dir = os.path.dirname(__file__)  # get current directory
+file_path = os.path.join(module_dir, 'model_pkl')
 
 # Create your views here.
 
@@ -25,18 +31,11 @@ def services(request, pk):
 def health(request, pk):
     print(request.method)
     if request.method == "POST":
-        print(request.POST.get('gender'))
-        print(request.POST.get('smoker'))
-        print(request.POST.get('tobacco'))
-        print(request.POST.get('bp'))
-        print(request.POST.get('obese'))
-        print(request.POST.get('diabetes'))
-        print(request.POST.get('metabolic'))
-        print(request.POST.get('stimulant'))
-        print(request.POST.get('cardiac'))
-        print(request.POST.get('preclam'))
-        print(request.POST.get('cabg'))
-        print(request.POST.get('respi'))
+        ip_info=[[request.POST.get('gender'),request.POST.get('smoker'),request.POST.get('tobacco'),request.POST.get('bp'),request.POST.get('obese'),request.POST.get('diabetes'),request.POST.get('metabolic'),request.POST.get('stimulant'),request.POST.get('cardiac'),request.POST.get('preclam'),request.POST.get('cabg'),request.POST.get('respi')]]
+        ip_df=pd.DataFrame(ip_info,columns=['Gender','Chain_smoker','Consumes_other_tobacco_products','HighBP','Obese','Diabetes','Metabolic_syndrome','Use_of_stimulant_drugs','Family_history','History_of_preeclampsia','CABG_history','Respiratory_illness'])
+        with open(file_path , 'rb') as f:
+            dt = pickle.load(f)
+        print(dt.predict(ip_df))
     context={'pk': pk}
     return render(request, 'patient/patientdetails.html', {'context': context})
 
@@ -80,7 +79,7 @@ def pfeed(request, pk):
     doctorPostCount = dict(sorted(doctorPostCount.items(), key=lambda item: item[1], reverse=True))
     context={'pk': pk, 'posts': posts, 'doctorPostCount': doctorPostCount}
     if request.method == "POST":
-        return redirect('bookmark', pk=pk, pk3=request.POST.get('idpost'))
+        return redirect('pbookmark', pk=pk, pk3=request.POST.get('idpost'))
     return render(request, 'patient/feed.html', {'context': context})
 
 def dpdetails(request, pk, pk2):
@@ -103,7 +102,7 @@ def dpdetails(request, pk, pk2):
         review.save()
     return render(request, 'patient/dpdetails.html', {'context': context})
 
-def bookmark(request, pk, pk3):
+def pbookmark(request, pk, pk3):
     context={'pk': pk}
     if request.method=="POST":
         bookmark=Bookmark()
