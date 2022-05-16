@@ -20,7 +20,7 @@
 {% endblock style %}
 
 <div>
-    {% for i in context.address %}
+    {% comment %} {% for i in context.address %}
             <div>
                 <p>{{ i.address }}, {{ i.pin_code }}<p>
                 <p>{{ i.day }} : {{ i.fromtime }} to {{ i.totime }}</p>
@@ -30,6 +30,52 @@
                     <input type="Submit" value="Delete"></button>
                 </form>
             </div>
-    {% endfor %}
+    {% endfor %} {% endcomment %}
+    <section class="vh-100" style="background-color: #f4f5f7;">
+        <div class="container-fluid py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-75">
+            <div class="col col-lg-6 mb-4 mb-lg-0">
+              <div class="card mb-3" style="border-radius: .5rem;">
+                <div class="row g-0">
+                  <div class="col-md-4 gradient-custom text-center text-white"
+                    style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                      alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                    <h5 style="color:black;">{{ context.doctor.name|default:"" }}</h5>
+                    {% for i in context.speciality %}
+                        <p style="color:black">{{ i.speciality }}</p>
+                    {% endfor %}
+                    <i class="far fa-edit mb-5"></i>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body p-4">
+                      <h6>Address</h6>
+                      <hr class="mt-0 mb-4">
+                      <div class="row pt-1">
+                        <div class="col-12 mb-3">
+                          {% comment %} <h6>Email</h6>
+                          <p class="text-muted">{{ context.doctor.email|default:"" }}</p> {% endcomment %}
+                          {% for i in context.address %}
+                            <div style="margin-bottom: 20px;">
+                                <p>{{ i.address }}, {{ i.pin_code }}<p>
+                                <p>{{ i.day }} : {{ i.fromtime }} to {{ i.totime }}</p>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{i.address}}" name="address">
+                                    <input type="Submit" value="Delete" class="btn btn-danger"></button>
+                                </form>
+                            </div>
+                        {% endfor %}
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 </div>
 {% endblock content %}
