@@ -60,8 +60,15 @@
           <li class="nav-item">
             <a href="{% url 'dservices' pk=context.pk %}" class="nav-link">Services</a>
           </li>
-          <li class="nav-item">
-            <a href="{% url 'dhealth' pk=context.pk %}" class="nav-link">Health Check</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Health Check
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'dhealth' pk=context.pk %}">Heart</a>
+              <a class="dropdown-item" href="{% url 'dkidney' pk=context.pk %}">Kidney</a>
+              <a class="dropdown-item" href="{% url 'dlungs' pk=context.pk %}">Lungs</a>
+            </div>
           </li>
           <li class="nav-item">
             <a href="{% url 'dprofile' pk=context.pk %}" class="nav-link">Profile</a>

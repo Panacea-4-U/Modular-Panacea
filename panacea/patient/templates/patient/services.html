@@ -76,7 +76,6 @@
                 </div>
             </div>
         </form>
-        <a class="btn" href={% url 'map_show' pk=context.pk %}>Click to see locations on map</a>
         <div class="container-fluid">
             <div class="button_grp">
                 <ul>
@@ -104,7 +103,6 @@
                         <div class="card-body">
                         <h5 class="card-title">ID: {{ result.doc_id }}</h5>
                         <p class="card-text doc_email">Email: {{ result.email }}</p>
-                        <p class="card-text doc_email">Speciality: {{ result.speciality }}</p>.
                         <a href="{% url 'dpdetails' pk=context.pk pk2=result.doc_id %}" class="btn btn-primary">More Info</a>
                         {% comment %} <form method="post">
                             {% csrf_token %}

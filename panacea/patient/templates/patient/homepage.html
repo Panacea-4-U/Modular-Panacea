@@ -8,7 +8,7 @@
 {% block content %} 
 
 <body>
-  <div id="scene" >
+  {% comment %} <div id="scene" >
     <div id="left-zone">
       <ul class="list">
         <li class="item">
@@ -64,10 +64,52 @@
         Prevention is better than cure
     </h4>
     
+  </div> {% endcomment %}
+  <div id="hometxt">
+    <p>Caring for better life</p>
+    <h2> You are just a click away from cure </h2>
+    
   </div>
+  <footer class="text-center text-white" style="background-color: #00B16A;">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0" style="margin-top: 100vh;">
+      <!-- Section: Social media -->
+      <section class="mb-4">
+        <!-- Facebook -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+  
+        <!-- Twitter -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+          ><i class="fab fa-twitter"></i>
+  
+        <!-- Instagram -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+          ><i class="fab fa-instagram"></i
+        ></a>
+  
+        <!-- Linkedin -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+  
+      </section>
+      <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+  
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2022 Copyright:
+      <a class="text-white" href="https://mdbootstrap.com/"></a>
+    </div>
+    <!-- Copyright -->
+  </footer>
 </body>
 
- 
+
+
     
 {% endblock content %}
 

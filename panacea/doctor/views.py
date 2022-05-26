@@ -9,6 +9,14 @@ from django.db.models import Q
 from django.views.generic.list import ListView
 import itertools
 import random
+import pandas as pd
+import pickle
+from django.contrib import messages
+
+import os
+module_dir = os.path.dirname(__file__)  # get current directory
+file_path = os.path.join(module_dir, 'model_pkl')
+file_path2 = os.path.join(module_dir, 'kidney_model_pkl')
 
 # Create your views here.
 def home(request,pk):
@@ -55,20 +63,43 @@ def contact_us(request,pk):
 
 def health(request, pk):
     if request.method == "POST":
-        print(request.POST.get('gender'))
-        print(request.POST.get('smoker'))
-        print(request.POST.get('tobacco'))
-        print(request.POST.get('bp'))
-        print(request.POST.get('obese'))
-        print(request.POST.get('diabetes'))
-        print(request.POST.get('metabolic'))
-        print(request.POST.get('stimulant'))
-        print(request.POST.get('cardiac'))
-        print(request.POST.get('preclam'))
-        print(request.POST.get('cabg'))
-        print(request.POST.get('respi'))
+        ip_info=[[request.POST.get('gender'),request.POST.get('smoker'),request.POST.get('tobacco'),request.POST.get('bp'),request.POST.get('obese'),request.POST.get('diabetes'),request.POST.get('metabolic'),request.POST.get('stimulant'),request.POST.get('cardiac'),request.POST.get('preclam'),request.POST.get('cabg'),request.POST.get('respi')]]
+        ip_df=pd.DataFrame(ip_info,columns=['Gender','Chain_smoker','Consumes_other_tobacco_products','HighBP','Obese','Diabetes','Metabolic_syndrome','Use_of_stimulant_drugs','Family_history','History_of_preeclampsia','CABG_history','Respiratory_illness'])
+        with open(file_path , 'rb') as f:
+            dt = pickle.load(f)
+        print(dt.predict(ip_df))
+        if dt.predict(ip_df)==['1']:
+            data=SpecialityDb.objects.filter(speciality__iregex=r'Heart.+')
+            tempdata=[]
+            datatemp=Doctor.objects.all()
+            for i in data:
+                for j in datatemp:
+                    if i.doc_id == j.doc_id and j not in tempdata:
+                        tempdata.append(j)
+            context={'data': tempdata, 'pk':pk, 'disease': 'heart'}
+            messages.success(request, 'You are at risk')
+        else:
+            messages.success(request, 'You are not at risk')
     context={'pk': pk}
     return render(request, 'doctor/patientdetails.html', {'context': context})
+
+def kidney(request, pk):
+    if request.method == "POST":
+        ip_info=[[request.POST.get('blood_pressure'),request.POST.get('specific_gravity'),request.POST.get('serum_creatinine'),request.POST.get('sodium'),request.POST.get('haemoglobin'),request.POST.get('packed_cell_volume'),request.POST.get('peda_edema')]]
+        ip_df=pd.DataFrame(ip_info,columns=['blood_pressure', 'specific_gravity', 'serum_creatinine', 'sodium', 'haemoglobin','packed_cell_volume', 'peda_edema'])
+        with open(file_path2 , 'rb') as f:
+            dt = pickle.load(f)
+        print(dt.predict(ip_df))
+        if dt.predict(ip_df)==['1']:
+            messages.success(request, 'You are at risk')
+        else:
+            messages.success(request, 'You are not at risk')
+    context={'pk': pk}
+    return render(request, 'doctor/kidney.html', {'context': context})
+
+def lungs(request, pk):
+    context={'pk': pk}
+    return render(request, 'doctor/lungs.html', {'context': context})
 
 def map_show(request, pk):
     context={'pk': pk, 'coords': [[19.117131, 72.90463, 'Ahuja Pranav'], [19.091104, 72.935005, 'Hardik Asher'], [19.150748, 72.903066, 'Tushar Bapecha'], [19.210506, 72.908963, 'Animesh Chaturvedi'], [19.091289, 72.957334, 'Karan Bhanushali'], [19.198571, 72.982563, 'Rugved Bongale'], [19.230356, 72.939008, 'Ronak Gala'], [19.161097, 72.960605, 'Akshat Gandhi'], [19.240368, 72.996704, 'Anchal Jain'], [19.133163, 72.978785, 'Joshi Saurav'], [19.129233, 72.932369, 'Rama Daugherty'], [19.179661, 72.93291, 'Ignatius Vincent'], [19.282513, 72.899229, 'Nasim Garrett'], [19.225142, 72.936886, 'Xander Franco'], [19.246724, 72.991944, 'Russell Ochoa'], [19.124205, 72.934343, 'Howard Fleming'], [19.097097, 72.976609, 'Beverly Hood'], [19.167572, 72.914159, 'Ahmed Sanchez'], [19.275186, 72.988254, 'Paul Mcguire'], [19.225481, 72.963841, 'Phelan Stout']]}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from panacea_app.models import Patient, TempDb, Doctor, Reviews, Bookmark
 from doctor.models import PostDb, SpecialityDb, AddressDb
+from django.contrib import messages
 import random
 import pandas as pd
 import pickle
@@ -8,6 +9,7 @@ import pickle
 import os
 module_dir = os.path.dirname(__file__)  # get current directory
 file_path = os.path.join(module_dir, 'model_pkl')
+file_path2 = os.path.join(module_dir, 'kidney_model_pkl')
 
 # Create your views here.
 
@@ -29,15 +31,44 @@ def services(request, pk):
     return render(request, 'patient/services.html',{'context': context})
 
 def health(request, pk):
-    print(request.method)
     if request.method == "POST":
         ip_info=[[request.POST.get('gender'),request.POST.get('smoker'),request.POST.get('tobacco'),request.POST.get('bp'),request.POST.get('obese'),request.POST.get('diabetes'),request.POST.get('metabolic'),request.POST.get('stimulant'),request.POST.get('cardiac'),request.POST.get('preclam'),request.POST.get('cabg'),request.POST.get('respi')]]
         ip_df=pd.DataFrame(ip_info,columns=['Gender','Chain_smoker','Consumes_other_tobacco_products','HighBP','Obese','Diabetes','Metabolic_syndrome','Use_of_stimulant_drugs','Family_history','History_of_preeclampsia','CABG_history','Respiratory_illness'])
         with open(file_path , 'rb') as f:
             dt = pickle.load(f)
         print(dt.predict(ip_df))
+        if dt.predict(ip_df)==['1']:
+            # data=SpecialityDb.objects.filter(speciality__iregex=r'Heart.+')
+            # tempdata=[]
+            # datatemp=Doctor.objects.all()
+            # for i in data:
+            #     for j in datatemp:
+            #         if i.doc_id == j.doc_id and j not in tempdata:
+            #             tempdata.append(j)
+            # context={'data': tempdata, 'pk':pk, 'disease': 'heart'}
+            messages.success(request, 'You are at risk')
+        else:
+            messages.success(request, 'You are not at risk')
     context={'pk': pk}
     return render(request, 'patient/patientdetails.html', {'context': context})
+
+def kidney(request, pk):
+    if request.method == "POST":
+        ip_info=[[request.POST.get('blood_pressure'),request.POST.get('specific_gravity'),request.POST.get('serum_creatinine'),request.POST.get('sodium'),request.POST.get('haemoglobin'),request.POST.get('packed_cell_volume'),request.POST.get('peda_edema')]]
+        ip_df=pd.DataFrame(ip_info,columns=['blood_pressure', 'specific_gravity', 'serum_creatinine', 'sodium', 'haemoglobin','packed_cell_volume', 'peda_edema'])
+        with open(file_path2 , 'rb') as f:
+            dt = pickle.load(f)
+        print(dt.predict(ip_df))
+        if dt.predict(ip_df)==['1']:
+            messages.success(request, 'You are at risk')
+        else:
+            messages.success(request, 'You are not at risk')
+    context={'pk': pk}
+    return render(request, 'patient/kidney.html', {'context': context})
+
+def lungs(request, pk):
+    context={'pk': pk}
+    return render(request, 'patient/lungs.html', {'context': context})
 
 def contact_us(request,pk):
     context={'pk': pk}

@@ -44,14 +44,14 @@
                           <h6>Email</h6>
                           <p class="text-muted">{{ context.patient.email|default:"" }}</p>
                         </div>
-                        <div class="col-6 mb-3">
+                        {% comment %} <div class="col-6 mb-3">
                           <h6>Address</h6>
                           <p class="text-muted">Patient Address</p>
                         </div>
                         <div class="col-6 mb-3">
                           <h6>PinCode</h6>
                           <p class="text-muted">Patient pincode</p>
-                        </div>
+                        </div> {% endcomment %}
                         <div class="col-6 mb-3">
                           <h6>Reviews Posted : {{ context.reviews|length }}</h6>
                           {% for i in context.reviews %}

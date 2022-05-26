@@ -7,12 +7,12 @@
 
 {% block content %} 
 <body>
-    <div class="container">
+    <div class="container my-4">
         <form method="post">
           {% csrf_token %}
           <label for="fname">First Name</label>
           <input type="text" id="fname" name="firstname" placeholder="Your name..">
-      
+       
           <label for="lname">Email:&nbsp;</label><span>{{context.email}}</span>
           <br>
           <label for="country">Country</label>

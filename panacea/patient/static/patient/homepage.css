@@ -52,7 +52,7 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  background-image: url("patient/static/patient/bg_doctor.jpg");
+  background-image: url("bg_doctor.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -319,4 +319,3 @@ body #scene #right-zone {
 footer{
   margin-top: 200px;
 }
-

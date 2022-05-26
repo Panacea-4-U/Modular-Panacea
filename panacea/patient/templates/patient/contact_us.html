@@ -6,8 +6,8 @@
 {% endblock connectcss %}
 
 {% block content %} 
-<body>
-    <div class="container">
+
+    <div class="container my-4">
         <form method="post">
           {% csrf_token %}
           <label for="fname">First Name</label>
@@ -45,7 +45,7 @@
       
         </form>
       </div>
-</body>
+
 
 
 {% endblock content %}

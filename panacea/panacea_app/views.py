@@ -21,6 +21,7 @@ def landingpage(request):
     return render(request,'panacea_app/landingpage.html')
 
 def login_register(request):
+    context={"message": ""}
     if(request.method == "POST" and request.POST.get('register')=="register"):
         pd_id=randint(1000000000,9999999999)
         name = request.POST.get("name")
@@ -62,14 +63,15 @@ def login_register(request):
             try:
                 patient=Patient.objects.get(email=email)
             except:
-                return render(request,'panacea_app/login_register.html')
+                context['message']="notlog"
+                return render(request,'panacea_app/login_register.html', {"context": context})
         if(doctor!=None):
             if(doctor.password==password):
                 return redirect(dviews.home, pk=doctor.doc_id)
         if(patient!=None):
             if(patient.password==password):
                 return redirect(pviews.home, pk=patient.pat_id)
-    return render(request,'panacea_app/login_register.html')
+    return render(request,'panacea_app/login_register.html', {"context": context})
 
 def doctordetails(request):
     return render(request,'panacea_app/doctordetails.html')

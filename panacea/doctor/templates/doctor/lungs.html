@@ -1,9 +1,9 @@
-{% extends "patient/base.html" %}
+{% extends "doctor/base.html" %}
 {% load static %}
 
 
 {% block connectcss %} 
-<link rel="stylesheet" href="{% static 'patient/patientdetails.css' %}">
+<link rel="stylesheet" href="{% static 'doctor/patientdetails.css' %}">
 {% endblock connectcss %}
 
 
@@ -23,7 +23,7 @@
         <form method="post">
             {% csrf_token %}
             <div class="row">
-                <h4 style="margin-bottom: 20px;">Heart Health</h4>
+                <h4 style="margin-bottom: 20px;">Lungs Health</h4>
             </div>
             <div class="col-half">
                 <h6>Gender</h6>

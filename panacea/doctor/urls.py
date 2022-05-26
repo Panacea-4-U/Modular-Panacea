@@ -19,7 +19,9 @@ urlpatterns = [
     path('update_doc', views.update_doc, name="update_doc"),
     path('doctors_det/<int:pk2>/', views.dpdetails2, name="dpdetails2"),
     path('bookmark/<int:pk3>/', views.bookmark, name="bookmark"),
-    path('doc_bookmark', views.doc_bookmark, name="doc_bookmark")
+    path('doc_bookmark', views.doc_bookmark, name="doc_bookmark"),
+    path('kidney/', views.kidney, name="dkidney"),
+    path('lungs/', views.lungs, name="dlungs")
 ]
 if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL,

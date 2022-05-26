@@ -1,0 +1,101 @@
+{% extends "doctor/base.html" %}
+{% load static %}
+
+
+{% block connectcss %} 
+<link rel="stylesheet" href="{% static 'doctor/patientdetails.css' %}">
+{% endblock connectcss %}
+
+
+{% block content %} 
+{% if messages %}
+<ul class="messages" style="list-style: none; padding-left: 0;">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %} style="background-color: grey; color: black; padding-top: 10px; padding-bottom: 10px">
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+    <div class="container">
+        <div style="margin: 15px;">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <h4 style="margin-bottom: 20px;">Kidney Health</h4>
+            </div>
+            <div class="col-half">
+                <h6>Blood Pressure</h6>
+                <div class="input-group"><input  type="decimal" name="blood_pressure" required />
+                </div>
+            </div>
+            <div class="col-half">
+                <h6>Specific Gravity</h6>
+                <div class="input-group">
+                    <input type="decimal" name="specific_gravity" required />
+                </div>
+            </div>
+            <div class="col-half">
+                <h6>Serum Creatinine</h6>
+                <div class="input-group">
+                    <input  type="decimal" name="serum_creatinine" required />
+                </div>
+            </div>
+            <div class="col-half">
+                <h6>Sodium</h6>
+                <div class="input-group">
+                    <input  type="decimal" name="sodium" required />
+                </div>
+            </div>
+            <div class="col-half">
+                <h6>Haemoglobin</h6>
+                <div class="input-group">
+                    <input  type="decimal" name="haemoglobin" required />
+                </div>
+            </div>
+            <div class="col-half">
+                <h6>Packed cell volume</h6>
+                <div class="input-group">
+                    <input  type="decimal" name="packed_cell_volume" required />
+                </div>
+            </div>
+            <div class="col-half">
+                <h6>Peda Edema</h6>
+                <div class="input-group">
+                    <input type="decimal" name="peda_edema" required />
+                </div>
+            </div>
+            <div class="offset-12">
+            <button data-toggle="tooltip" data-placement="bottom" data-original-title="Please Check Terms and Conditions"  type="submit" style="margin-top: 15px;background-color: #11CB95;" class="btn" >Submit</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    </div>
+
+{% endblock content %}
+
+{% block script %} 
+<script>
+    function myFunction() {
+        var input;
+        input = document.getElementById("terms");
+        if (input.value == "off") {
+            input.value = "on";
+        } else {
+            input.value = "off";
+        }
+        console.log(input.value);
+    }
+    $(function () {
+        var input;
+        input = document.getElementById("terms");
+        if (input.value == "off") {
+            $('[data-toggle="tooltip"]').tooltip({ trigger: 'click' });
+        } else {
+            $('[data-toggle="tooltip"]') = "none";
+        }
+    });
+</script>
+{% endblock script %}

@@ -14,7 +14,9 @@ urlpatterns = [
     path('feed/', views.pfeed, name="pfeed"),
     path('doctors_details/<int:pk2>/', views.dpdetails, name="dpdetails"),
     path('pbookmark/<int:pk3>/', views.pbookmark, name="pbookmark"),
-    path('pat_bookmark', views.pat_bookmark, name="pat_bookmark")
+    path('pat_bookmark', views.pat_bookmark, name="pat_bookmark"),
+    path('kidney/', views.kidney, name="pkidney"),
+    path('lungs/', views.lungs, name="plungs")
 ]
 
 if settings.DEBUG:
