@@ -4,7 +4,7 @@
 
 
 {% block connectcss %} 
-<link rel="stylesheet" href="{% static 'patient/feed_.css' %}">
+<link rel="stylesheet" href="{% static 'patient/bookmark.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
 <link href="https://fonts.googleapis.com/css?family=Poppins:500,700&display=swap" rel="stylesheet">
 {% endblock connectcss %}
@@ -20,8 +20,22 @@
 <div class="container-fluid">
     <form method="post">
         {% csrf_token %}
-        Enter header text: <input type="text" name="header">
-        <input type="submit" value="Bookmark"> 
+        {% comment %} Enter header text: <input type="text" name="header">
+        <input type="submit" value="Bookmark">  {% endcomment %}
+        <div class="container" style="margin-top: 12vh;">
+
+            <h1 class="title">Bookmark Details</h1>
+        
+            <div class="grid">
+                <div class="form-group a">
+                    <label for="name">Name</label>
+                    <input class="border-radius" id="header" name="header" type="text" placeholder="Bookmark Name" style="margin:15px 7px 7px 7px" />
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="button">Bookmark</button>
+                </div>
+            </div>
+        </div>
     </form>
 </div>
 
