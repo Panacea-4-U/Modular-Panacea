@@ -10,6 +10,7 @@ from random import randint
 from django.db.models import Q
 from patient import views as pviews
 from doctor import views as dviews
+from django.contrib import messages
 
 # Create your views here.
 

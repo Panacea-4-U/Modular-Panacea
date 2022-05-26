@@ -80,13 +80,8 @@
           <li class="nav-item">
             <a href="{% url 'login-register' %}" class="nav-link">Health Check</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-              More
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a href="#0" class="nav-link">FAQs</a>
-              <a href="{% url 'contact us'%}" class="nav-link">Contact Us</a>
+          <li class="nav-item">
+            <a href="{% url 'contact us' %}" class="nav-link">Contact Us</a>
           </li>
           <li class="nav-item">
             <a href="{% url 'login-register' %}" style="float: right"><button class="btn btn-success">Sign Up / Sign In</button></a>
@@ -109,6 +104,7 @@
   <!-- </div> -->
 </body>
 {% block script %} 
+
 
 {% endblock script %}
 
